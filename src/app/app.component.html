@@ -1,0 +1,47 @@
+<div class="container w-50">
+  <div>
+    <h1>User Management</h1>
+    <input
+      type="text"
+      class="form-control w-50 mb-1"
+      [(ngModel)]="user.name"
+      placeholder="Enter the user name"
+    />
+  </div>
+  <div>
+    <input
+      type="text"
+      class="form-control w-50 mb-1"
+      [(ngModel)]="user.email"
+      placeholder="Email"
+    />
+  </div>
+  @if(editUserId){
+  <div>
+    <button class="btn btn-outline-success me-1 " (click)="updateUser(user)">Update User</button>
+    <button class="btn btn-outline-info me-1 " (click)="resetForm()">Reset</button>
+  </div>
+  } @else {
+  <div>
+    <button class="btn btn-outline-primary" (click)="addUser()">
+      Add User
+    </button>
+  </div>
+
+  }
+  <hr />
+  <div>
+    <h2>List of Users</h2>
+    @for(user of users; track user.id){
+    <p>
+      {{ $index + 1 }}: {{ user.id }} : {{ user.name }} :: {{ user.email}}
+      <button class="btn btn-outline-warning me-1" (click)="setEditUser(user)">
+        Update
+      </button>
+      <button class="btn btn-outline-danger me-1" (click)="deleteUser(user.id)">
+        Delete
+      </button>
+    </p>
+    }
+  </div>
+</div>
